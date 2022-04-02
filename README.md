@@ -1,7 +1,51 @@
 # HotRaceTester
 This is HotRace Tester
 
-# 使い方
+# 構成
+```sh
+.
+├── LICENSE
+├── README.md
+├── bench.sh
+├── gen.py
+├── grademe.sh
+├── help
+│   └── helper.sh
+└── test
+    ├── ans
+    │   ├── empty.ans
+    │   ├── example.ans
+    │   ├── neol_example.ans
+    │   ├── test0.ans
+    │   ├── test1.ans
+    │   ├── test2.ans
+    │   ├── test3.ans
+    │   ├── test4.ans
+    │   ├── test5.ans
+    │   ├── test6.ans
+    │   ├── test7.ans
+    │   ├── test8.ans
+    │   └── test9.ans
+    └── cases
+        ├── empty.htr
+        ├── example.htr
+        ├── neol_example.htr
+        ├── test0.htr
+        ├── test1.htr
+        ├── test2.htr
+        ├── test3.htr
+        ├── test4.htr
+        ├── test5.htr
+        ├── test6.htr
+        ├── test7.htr
+        ├── test8.htr
+        └── test9.htr
+
+4 directories, 32 files
+
+```
+
+# 設定
 `help/helper.sh`
 ```sh
 #-------------------------------------
@@ -11,13 +55,18 @@ readonly HOTRACE_DIR="../"
 readonly HOTRACE_EXE="hotrace"
 #-------------------------------------
 ```
-HotRaceTester から hotrace の相対パスを `HOTRACE_DIR` に設定
+HotRaceTester から hotrace への相対パスを `HOTRACE_DIR` に設定
 
 ### テスト
 ```sh
 $ bash ./grademe.sh
 ```
-出力は`res/
+結果は`res/`配下にファイルとして出力される
+
+```
+$ bash ./grademe.sh clean
+```
+`res` ディレクトリ削除
 
 ### ベンチマーク
 ```sh
