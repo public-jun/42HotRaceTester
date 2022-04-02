@@ -14,9 +14,9 @@ readonly HOTRACE_PATH="${HOTRACE_DIR}${HOTRACE_EXE}"
 bench () {
 	num=$(($1))
 	if [[ $1 == "bash" ]]; then
-		time ./hotrace < <(python3 gen.py 10) > /dev/null 2>&1 | awk -F 'cpu ' '$0=$2_'
+		time "${HOTRACE_PATH}" < <(python3 gen.py 1)
 	else
-		(time ./hotrace < <(python3 gen.py 10) > /dev/null) 2>&1 | awk -F 'cpu ' '$0=$2_'
+		(time "${HOTRACE_PATH}" < <(python3 gen.py 10) > /dev/null) 2>&1 | awk -F 'cpu ' '$0=$2_'
 	fi
 }
 

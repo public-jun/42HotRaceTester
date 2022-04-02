@@ -5,7 +5,7 @@ cd "$(dirname $0)"
 #-------------------------------------
 # USER SETTING
 #-------------------------------------
-readonly HOTRACE_DIR="./"
+readonly HOTRACE_DIR="../"
 readonly HOTRACE_EXE="hotrace"
 #-------------------------------------
 
