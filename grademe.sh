@@ -72,6 +72,7 @@ print_result () {
 
 main () {
 	echo HotRaceTester!
+	clean
 	mkdir ${RESULT_DIR}
 	run_all_tests
 	print_result
