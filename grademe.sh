@@ -30,7 +30,8 @@ print_ko () {
 
 
 check_diff () {
-	diff=$(diff ${RESULT_DIR}/$1.res ${ANSWER_DIR}/$1.ans)
+	file=$1
+	diff=$(diff ${RESULT_DIR}/${file%%.*}.res ${ANSWER_DIR}/${file%%.*}.ans)
 	if is_ok ; then
 		print_ok
 		let result_ok++
@@ -43,14 +44,14 @@ check_diff () {
 
 run_test () {
 	file=$1
-	"${HOTRACE_PATH}" < "${CASES_DIR}/${file}.htr" > "${RESULT_DIR}/${file}.res"
+	"${HOTRACE_PATH}" < "${CASES_DIR}/${file}" > "${RESULT_DIR}/${file%%.*}.res"
 	check_diff ${file}
 }
 
 run_all_tests() {
-	for file in $(ls ${CASES_DIR} | sed 's/\.htr//'); do
+	for file in $(ls ${CASES_DIR}); do
 		run_test "${file}"
-		echo "${file} TEST!!"
+		echo "${file%%.*} TEST!!"
 	done
 }
 
