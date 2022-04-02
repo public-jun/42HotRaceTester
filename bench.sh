@@ -1,15 +1,9 @@
 #!/bin/sh
 
-#-------------------------------------
-# USER SETTING
-#-------------------------------------
-# readonly HOTRACE_DIR="./"
-# readonly HOTRACE_EXE="hotrace"
-#-------------------------------------
 
 source help/helper.sh
-readonly HOTRACE_PATH="${HOTRACE_DIR}${HOTRACE_EXE}"
 
+readonly HOTRACE_PATH="${HOTRACE_DIR}${HOTRACE_EXE}"
 
 bench () {
 	num=$(($1))
