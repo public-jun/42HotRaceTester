@@ -1,7 +1,7 @@
 # HotRaceTester
 This is HotRace Tester
 
-# 構成
+## TREE
 ```sh
 .
 ├── LICENSE
@@ -45,7 +45,7 @@ This is HotRace Tester
 
 ```
 
-# 設定
+## SETTINGS
 `help/helper.sh`
 ```sh
 #-------------------------------------
@@ -57,7 +57,7 @@ readonly HOTRACE_EXE="hotrace"
 ```
 HotRaceTester から hotrace への相対パスを `HOTRACE_DIR` に設定
 
-### テスト
+### USAGE
 ```sh
 $ bash ./grademe.sh
 ```
@@ -68,7 +68,7 @@ $ bash ./grademe.sh clean
 ```
 `res` ディレクトリ削除
 
-### ベンチマーク
+### BENCH
 ```sh
 $ bash ./bench.sh
 or
