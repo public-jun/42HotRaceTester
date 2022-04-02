@@ -57,7 +57,7 @@ readonly HOTRACE_EXE="hotrace"
 ```
 HotRaceTester から hotrace への相対パスを `HOTRACE_DIR` に設定
 
-### USAGE
+## USAGE
 ```sh
 $ bash ./grademe.sh
 ```
@@ -68,7 +68,7 @@ $ bash ./grademe.sh clean
 ```
 `res` ディレクトリ削除
 
-### BENCH
+## BENCH
 ```sh
 $ bash ./bench.sh
 or
