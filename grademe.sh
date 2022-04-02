@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source help/helper.sh
+source ./helper.sh
 
 readonly HOTRACE_PATH="${HOTRACE_DIR}${HOTRACE_EXE}"
 
@@ -8,10 +8,7 @@ clean () {
 	rm -rf "${RESULT_DIR}"
 }
 
-if [[ $1 == clean ]]; then
-	clean
-	exit
-fi
+
 
 is_ok () {
 	if [[ -z "${diff}" ]]; then
@@ -25,7 +22,7 @@ print_ok () {
 }
 
 print_ko () {
-	printf "${COLOR_RED}[✔ ]${COLOR_RESET}"
+	printf "${COLOR_RED}[✗ ]${COLOR_RESET}"
 }
 
 
@@ -44,7 +41,11 @@ check_diff () {
 
 run_test () {
 	file=$1
-	"${HOTRACE_PATH}" < "${CASES_DIR}/${file}" > "${RESULT_DIR}/${file%%.*}.res"
+	if "${is_valgrind}"; then
+		valgrind "${HOTRACE_PATH}" < "${CASES_DIR}/${file}" > "${RESULT_DIR}/${file%%.*}.res"
+	else
+		"${HOTRACE_PATH}" < "${CASES_DIR}/${file}" > "${RESULT_DIR}/${file%%.*}.res"
+	fi
 	check_diff ${file}
 }
 
@@ -56,7 +57,7 @@ run_all_tests() {
 }
 
 print_result () {
-	echo -e "\n\n\nRESULT"
+	echo -e "\nRESULT"
 	if [[ ${result_ok} -eq ${result_all} ]]; then
 		printf "\t${COLOR_GREEN}${result_ok} / ${result_all}${COLOR_RESET}\t\n"
 	else
@@ -64,8 +65,35 @@ print_result () {
 	fi
 }
 
+usage () {
+	cat << EOM
+Usage: bash grademe.sh [clean] or [OPTION]...
+ -h          Display help
+ -l          Check leak for valgrind
+ clean       Remove result dir
+EOM
+	exit 2
+}
+
+set_option () {
+	if [[ $1 == clean ]]; then
+		clean
+		exit
+	fi
+
+	is_valgrind=false
+	while getopts "lh" optKey; do
+		case "$optKey" in
+		l) is_valgrind=true ;;
+		'-h'|'--help'|* ) usage;;
+		esac
+	done
+}
+
+
 main () {
-	echo HotRaceTester!
+	set_option $@
+	echo -e "HotRaceTester!\n"
 	clean
 	mkdir ${RESULT_DIR}
 	run_all_tests

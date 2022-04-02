@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-source help/helper.sh
+source ./helper.sh
 
 readonly HOTRACE_PATH="${HOTRACE_DIR}${HOTRACE_EXE}"
 
@@ -10,7 +10,7 @@ bench () {
 	if [[ $2 != "zsh" ]]; then
 		time "${HOTRACE_PATH}" < <(python3 gen.py $num) > /dev/null 2>&1
 	else
-		(time "../${HOTRACE_PATH}" < <(python3 ../gen.py ${num}) > /dev/null) 2>&1 | awk -F 'cpu ' '$0=$2_'
+		(time "${HOTRACE_PATH}" < <(python3 gen.py ${num}) > /dev/null) 2>&1 | awk -F 'cpu ' '$0=$2_'
 	fi
 }
 
@@ -34,7 +34,7 @@ main () {
 	check_shell
 	printf "${COLOR_GREEN}BENCH START${COLOR_RESET}\n"
 	bench $1 "${shell}"
-	printf "${COLOR_GREEN}BENCH DONE${COLOR_RESET}"
+	printf "${COLOR_GREEN}BENCH DONE${COLOR_RESET}\n"
 }
 
 main $@
