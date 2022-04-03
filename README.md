@@ -52,7 +52,7 @@ This is HotRace Tester
 #-------------------------------------
 # USER SETTING
 #-------------------------------------
-readonly HOTRACE_DIR="../Hotrace"
+readonly HOTRACE_DIR="../hotrace"
 readonly HOTRACE_EXE="hotrace"
 #-------------------------------------
 ```
